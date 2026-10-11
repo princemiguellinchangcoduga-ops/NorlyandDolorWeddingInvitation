@@ -1,0 +1,2771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wedding Post — NJ &amp; MD</title>
+
+<!-- ============================================================
+     GOOGLE FONTS
+     - UnifrakturMaguntia : Gothic/Old-English headers
+     - Playfair Display   : Elegant serif for names/titles
+     - Cinzel              : Secondary display serif accents
+     - Inter               : Clean sans-serif body / metadata
+     ============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================================
+     0. CSS VARIABLES — Burgundy Love Theme
+     ============================================================ */
+  :root{
+    /* BACKGROUNDS */
+    --burgundy:     #4A0E1A;   /* deep burgundy — dark sections */
+    --burgundy-2:   #380B14;   /* even deeper wine for cards */
+    --burgundy-3:   #5C1525;   /* slightly lighter for hover states */
+    --ivory:        #FDF8F0;   /* warm ivory — light sections */
+    --ivory-dark:   #F5EDE0;   /* slightly deeper ivory for cards */
+    --paper:        #FDF8F0;   /* alias for ivory (light sections) */
+    --paper-dark:   #F0E6D6;   /* gallery section bg */
+
+    /* TEXT */
+    --ink:          #2A1215;   /* body text on light */
+    --white:        #FAF6EE;   /* warm cream text on dark */
+    --ink-soft:     #6B4C52;   /* muted text on light sections */
+
+    /* ACCENT */
+    --gold:         #C9A84C;   /* warm gold — headers, accents */
+    --gold-light:   #E8D5A3;   /* champagne gold — subtle accents */
+    --gold-dark:    #A07830;   /* deeper gold for borders */
+
+    /* RULES */
+    --rule:         #4A0E1A;
+    --rule-soft:    rgba(74,14,26,0.18);
+    --rule-gold:    rgba(201,168,76,0.4);
+
+    /* DRESS-CODE PALETTE (client-specified warm tones — unchanged) */
+    --vibe-1: #F7E7CE; /* champagne */
+    --vibe-2: #F5F5DC; /* beige */
+    --vibe-3: #E3D9C6; /* nude */
+    --vibe-4: #D2B48C; /* warm-tan */
+    --vibe-5: #C19A6B; /* camel */
+    --vibe-6: #FFC0CB; /* rose */
+    --vibe-7: #F2C1C1; /* blush */
+    --vibe-8: #FFDAB9; /* peach */
+
+    /* PLACEHOLDER */
+    --placeholder-bg:     #EDE3D6;
+    --placeholder-border: #C9A884;
+    --placeholder-text:   #9A7A6A;
+
+    /* FONTS */
+    --font-display: 'Cinzel Decorative', 'Cinzel', serif;  /* section headers */
+    --font-serif:   'Cormorant Garamond', Georgia, serif;  /* names, body */
+    --font-script:  'Great Vibes', cursive;               /* decorative script */
+    --font-sans:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* legacy aliases so JS-set inline styles still work */
+    --charcoal:   #4A0E1A;
+    --charcoal-2: #380B14;
+    --slate-gray: #9A7A6A;
+    --sunflower-gold: #C9A84C;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--ivory);
+    color: var(--ink);
+    font-family: var(--font-serif);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  img, svg { display:block; max-width:100%; }
+
+  a { color: inherit; text-decoration:none; }
+
+  .container{
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ============================================================
+     SHARED: rules, headers, dividers
+     ============================================================ */
+  .masthead-rule{
+    border: none;
+    border-top: 2px solid var(--gold);
+    margin: 0;
+  }
+  .masthead-rule.thin{
+    border-top: 1px solid var(--rule-gold);
+  }
+
+  .section-header{
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-align: center;
+    color: var(--gold);
+    letter-spacing: 2px;
+    line-height: 1;
+    margin: 0;
+    text-transform: uppercase;
+  }
+  .section-header.on-dark{ color: var(--gold); }
+  .section-header.on-light{ color: var(--burgundy); }
+
+  .eyebrow{
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align:center;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .divider-rule{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 18px;
+    margin: 0 auto;
+  }
+  .divider-rule::before,
+  .divider-rule::after{
+    content:"";
+    height:1px;
+    flex:1;
+    background: var(--rule-gold);
+    max-width: 140px;
+  }
+  .divider-rule span{
+    font-family: var(--font-script);
+    font-size: 28px;
+    color: var(--gold);
+    white-space: nowrap;
+    padding: 0 6px;
+  }
+
+  /* Lace-style decorative border */
+  .lace-border-top {
+    width: 100%;
+    height: 28px;
+    background: var(--ivory);
+    position: relative;
+    overflow: hidden;
+  }
+  .lace-border-top::after {
+    content: "";
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 28px;
+    background: radial-gradient(circle at 50% 100%, var(--ivory) 10px, transparent 11px) repeat-x;
+    background-size: 28px 28px;
+    background-color: var(--burgundy);
+  }
+  .lace-border-bottom {
+    width: 100%;
+    height: 28px;
+    background: var(--burgundy);
+    position: relative;
+    overflow: hidden;
+  }
+  .lace-border-bottom::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 28px;
+    background: radial-gradient(circle at 50% 0%, var(--burgundy) 10px, transparent 11px) repeat-x;
+    background-size: 28px 28px;
+    background-color: var(--ivory);
+  }
+
+  /* Gold ornament divider */
+  .gold-ornament {
+    text-align: center;
+    font-size: 24px;
+    color: var(--gold);
+    letter-spacing: 8px;
+    margin: 12px 0;
+    opacity: 0.85;
+  }
+
+  /* ============================================================
+     PLACEHOLDER BOXES — reused everywhere photos/video/maps go
+     ============================================================ */
+  .placeholder-box{
+    background: var(--placeholder-bg);
+    border: 1.5px dashed var(--placeholder-border);
+    border-radius: 4px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    color: var(--placeholder-text);
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    gap: 8px;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .placeholder-box svg{ width: 30px; height: 30px; opacity: 0.55; }
+  .placeholder-box .ph-sub{
+    font-size: 10px;
+    text-transform: none;
+    letter-spacing: 0.2px;
+    font-weight: 400;
+    opacity: 0.8;
+  }
+  /* rounded-corner variant used in the Gallery grid */
+  .placeholder-box.rounded{ border-radius: 10px; }
+
+  /* ============================================================
+     PHOTO FRAMES — real <img> slots. Swap the file in /images/,
+     keep the filename, and the layout/crop stays exactly the same.
+     ============================================================ */
+  .photo-frame{
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    background: var(--placeholder-bg);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  .photo-frame.rounded{ border-radius: 10px; }
+
+  /* shimmering skeleton shown behind a photo-frame while its
+     (often large, high-res) source file is still downloading;
+     removed automatically the instant the image finishes loading */
+  .photo-frame-wrap{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  .photo-frame-wrap.is-loading::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      var(--placeholder-bg) 30%,
+      #ffffff 50%,
+      var(--placeholder-bg) 70%
+    );
+    background-size: 200% 100%;
+    animation: photo-shimmer 1.4s ease-in-out infinite;
+    z-index: 0;
+  }
+  .photo-frame-wrap .photo-frame{ position: relative; z-index: 1; }
+  @keyframes photo-shimmer{
+    0%{ background-position: 200% 0; }
+    100%{ background-position: -200% 0; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .photo-frame-wrap.is-loading::before{ animation: none; }
+  }
+  .photo-frame.is-loaded{ opacity: 1; }
+
+  /* ============================================================
+     1. SECTION A — HERO (Ivory + Gold on white)
+     ============================================================ */
+  .hero{
+    padding-top: 36px;
+    padding-bottom: 0;
+    background: var(--ivory);
+  }
+  .hero-monogram{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding: 4px 0 16px;
+  }
+  .hero-monogram img{
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    mix-blend-mode: multiply;
+    display:block;
+    margin: 0 auto;
+  }
+  .hero .masthead{
+    text-align:center;
+    padding: 10px 0 14px;
+  }
+  .hero .masthead .section-header{
+    font-size: clamp(28px, 7vw, 50px);
+    color: var(--burgundy);
+    letter-spacing: 4px;
+  }
+  .hero .masthead .masthead-meta{
+    display:flex;
+    justify-content: space-between;
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-top: 6px;
+  }
+
+  .hero-banner{
+    background: var(--burgundy);
+    color: var(--gold-light);
+    text-align:center;
+    font-family: var(--font-script);
+    font-weight: 400;
+    letter-spacing: 2px;
+    font-size: clamp(22px, 4vw, 32px);
+    padding: 14px 10px;
+  }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 24px;
+    padding: 14px 0 20px;
+  }
+  @media (min-width: 760px){
+    .hero-grid{ grid-template-columns: 1.05fr 1fr; gap: 32px; }
+  }
+
+  .hero-portrait .photo-frame{
+    aspect-ratio: 4/5;
+    border-radius: 4px;
+    border: 3px solid var(--gold);
+    box-shadow: 0 8px 32px rgba(74,14,26,0.2);
+  }
+
+  .hero-right{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap: 18px;
+  }
+
+  .invite-line{
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    text-align:center;
+    padding: 24px 0 6px;
+  }
+  .invite-names{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-script);
+    font-weight: 400;
+    font-size: clamp(32px, 6.8vw, 56px);
+    text-align:center;
+    line-height: 1.15;
+    color: var(--burgundy);
+  }
+  .invite-names .amp{
+    font-style: italic;
+    font-weight: 400;
+    font-size: 0.78em;
+    line-height: 1;
+    padding: 4px 0;
+    color: var(--gold);
+  }
+  .invite-date{
+    text-align:center;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    letter-spacing: 2px;
+    line-height: 1.45;
+    color: var(--burgundy);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .countdown{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 560px;
+    margin: 6px auto 0;
+  }
+  .countdown .unit{
+    background: var(--burgundy);
+    border: 1px solid var(--gold-dark);
+    border-radius: 4px;
+    padding: 10px 4px 8px;
+    text-align:center;
+  }
+  .countdown .unit .num{
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: clamp(20px, 4.4vw, 30px);
+    line-height:1;
+    color: var(--gold-light);
+  }
+  .countdown .unit .lbl{
+    font-family: var(--font-sans);
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    opacity: 0.75;
+    margin-top: 4px;
+    display:block;
+  }
+
+  .hero-couple-line{
+    text-align:center;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(18px, 3.8vw, 26px);
+    letter-spacing: 1px;
+    padding: 18px 0 30px;
+    color: var(--ink-soft);
+    line-height: 1.25;
+  }
+  .hero-couple-line .dot{ padding: 0 14px; opacity:0.5; font-size: 0.7em; color: var(--gold); }
+
+  /* ============================================================
+     2. SECTION B — OUR STORY / OUR SONG (Burgundy dark section)
+     ============================================================ */
+  .dark-section{
+    background: var(--burgundy);
+    color: var(--white);
+    padding: 64px 0 74px;
+  }
+  .dark-section .section-header{ font-size: clamp(28px, 7vw, 46px); margin-bottom: 14px; color: var(--gold); }
+  .dark-section .masthead-rule{ border-top-color: var(--gold-dark); }
+  .dark-section .our-story-eyebrow{
+    text-align:center;
+    font-family: var(--font-script);
+    font-size: 27px;
+    color: var(--gold-light);
+    margin-bottom: 44px;
+    font-weight: 400;
+  }
+
+  .love-story-row{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    max-width: 760px;
+    margin: 0 auto;
+  }
+  .love-story-item{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap: 18px;
+    padding: 36px 16px 28px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--rule-gold);
+    border-radius: 10px;
+  }
+  .love-story-item img{ width: 100%; max-width: 140px; height: auto; object-fit: contain; display: block; }
+  .love-story-item .love-story-date{
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 600;
+    font-size: 22px;
+    letter-spacing: 0.4px;
+    color: var(--gold-light);
+    position: relative;
+    padding-top: 14px;
+  }
+  .love-story-item .love-story-date::before{
+    content:"";
+    position:absolute;
+    top:0; left:50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 1px;
+    background: var(--rule-gold);
+  }
+
+  .song-block{
+    margin-top: 54px;
+    text-align:center;
+    max-width: 640px;
+    margin-left:auto;
+    margin-right:auto;
+    padding: 34px 20px 30px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--rule-gold);
+    border-radius: 10px;
+  }
+  .song-block .section-header{ font-size: clamp(26px,6vw,36px); margin-bottom: 8px; color: var(--gold); }
+  .song-block .song-eyebrow{
+    font-family: var(--font-script);
+    font-size: 18px;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .song-block .song-instructions{
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--gold-light);
+    opacity: 0.85;
+    max-width: 480px;
+    margin: 0 auto 22px;
+    line-height: 1.6;
+  }
+  .song-title-block{
+    text-align:center;
+    margin-bottom: 18px;
+  }
+  .song-title-block .song-name{
+    font-family: var(--font-script);
+    font-weight: 400;
+    font-size: clamp(26px, 5vw, 34px);
+    color: var(--gold-light);
+    line-height: 1.3;
+  }
+  .song-title-block .song-artist{
+    font-family: var(--font-sans);
+    font-size: clamp(11px, 2.5vw, 13px);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.75;
+    margin-top: 6px;
+  }
+  .song-video-wrap{
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    aspect-ratio: 16/9;
+    margin: 0 auto;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--gold-dark);
+    background: #000;
+  }
+  .local-song-video{
+    position:absolute;
+    top:0; left:0;
+    width:100%; height:100%;
+    object-fit: cover;
+    display:block;
+  }
+  .song-play-btn{
+    position:absolute;
+    inset:0;
+    margin:auto;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: rgba(74,14,26,0.7);
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition: background .2s ease, transform .2s ease;
+  }
+  .song-play-btn:hover{ background: rgba(74,14,26,0.9); }
+  .song-play-btn svg{ width:20px; height:20px; }
+  .song-play-btn .icon-pause{ display:none; }
+  .song-play-btn.is-playing .icon-play{ display:none; }
+  .song-play-btn.is-playing .icon-pause{ display:block; }
+  .song-play-btn.is-playing{ background: rgba(74,14,26,0.4); transform: scale(0.92); opacity: 0.75; }
+
+  .song-disclaimer{
+    font-family: var(--font-sans);
+    font-size: 10.5px;
+    line-height: 1.6;
+    color: var(--gold-light);
+    opacity: 0.6;
+    max-width: 480px;
+    margin: 18px auto 0;
+  }
+  .song-disclaimer a{ text-decoration: underline; color: var(--gold-light); }
+
+  .song-yt-btn{
+    display:inline-flex;
+    align-items:center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 10px 20px;
+    border: 1px solid var(--rule-gold);
+    border-radius: 30px;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .song-yt-btn:hover{ background: rgba(201,168,76,0.1); border-color: var(--gold); }
+
+  /* ============================================================
+     FLOATING BACKGROUND MUSIC PLAYER — persists across scroll
+     ============================================================ */
+  .bgm-player{
+    position: fixed;
+    right: 16px;
+    bottom: 16px;
+    z-index: 999;
+    display:flex;
+    align-items:center;
+    gap: 8px;
+  }
+  .bgm-toggle{
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: var(--burgundy);
+    color: var(--gold-light);
+    border: 1px solid var(--gold-dark);
+    box-shadow: 0 4px 14px rgba(74,14,26,0.4);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+  }
+  .bgm-toggle svg{ width:18px; height:18px; }
+  .bgm-toggle .bgm-icon-pause{ display:none; }
+  .bgm-toggle.is-playing .bgm-icon-play{ display:none; }
+  .bgm-toggle.is-playing .bgm-icon-pause{ display:block; }
+  .bgm-toggle.is-playing{
+    animation: bgm-pulse 1.8s ease-in-out infinite;
+  }
+  @keyframes bgm-pulse{
+    0%,100%{ box-shadow: 0 4px 14px rgba(74,14,26,0.4), 0 0 0 0 rgba(201,168,76,0.4); }
+    50%{ box-shadow: 0 4px 14px rgba(74,14,26,0.4), 0 0 0 8px rgba(201,168,76,0); }
+  }
+  .bgm-yt-link{
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--ivory);
+    border: 1px solid var(--rule-gold);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(0.85);
+    transition: opacity .2s ease, transform .2s ease;
+  }
+  .bgm-yt-link svg{ width:15px; height:15px; color: var(--burgundy); }
+  .bgm-player.is-active .bgm-yt-link{
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+  }
+  /* ============================================================
+     3. SECTION C — WEDDING TIMELINE (Ivory light section)
+     ============================================================ */
+  .timeline-section{ padding: 56px 0; background: var(--ivory); }
+  .timeline-section .section-header{ font-size: clamp(26px,6vw,40px); margin-bottom: 30px; color: var(--burgundy); }
+
+  .itinerary-row{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-bottom: 44px;
+  }
+  @media(min-width: 700px){ .itinerary-row{ grid-template-columns: repeat(4,1fr); } }
+
+  .itinerary-block{
+    background: var(--burgundy);
+    color: var(--white);
+    border-radius: 6px;
+    border: 1px solid var(--gold-dark);
+    padding: 18px 10px;
+    text-align:center;
+  }
+  .itinerary-block svg{ width:42px; height:42px; margin: 0 auto 10px; opacity:0.95; color: var(--gold); }
+  .itinerary-block .time{
+    font-family: var(--font-serif);
+    font-weight:700;
+    font-size: 20px;
+    color: var(--gold-light);
+  }
+  .itinerary-block .label{
+    font-family: var(--font-sans);
+    font-size: 12px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    color: var(--gold-light);
+    opacity: 0.75;
+    margin-top:3px;
+  }
+
+  .venue-row{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  @media(min-width: 760px){ .venue-row{ grid-template-columns: repeat(2,1fr); } }
+
+  .venue-card{ text-align:center; }
+  .venue-card .photo-frame{
+    aspect-ratio: 4/3;
+    margin-bottom: 14px;
+    border: 2px solid var(--gold);
+    border-radius: 6px;
+    box-shadow: 0 4px 18px rgba(74,14,26,0.12);
+  }
+  .venue-card .venue-name{
+    font-family: var(--font-serif);
+    font-weight:600;
+    font-size: 17px;
+    margin-bottom: 4px;
+    color: var(--burgundy);
+  }
+  .venue-card .venue-sub{
+    font-family: var(--font-sans);
+    font-size: 11px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 14px;
+  }
+  .view-map-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background: var(--burgundy);
+    color: var(--gold-light);
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight:600;
+    letter-spacing: 1px;
+    padding: 10px 22px;
+    border-radius: 30px;
+    border: 1px solid var(--gold-dark);
+    cursor:pointer;
+    transition: transform .15s ease, background .2s ease;
+  }
+  .view-map-btn:hover{ background: var(--burgundy-3); transform: translateY(-1px); }
+  .view-map-btn svg{ width:13px; height:13px; }
+
+  /* ============================================================
+     4. SECTION D — ENTOURAGE & SPONSORS (Burgundy dark section)
+     ============================================================ */
+  .entourage-section{ padding: 56px 0; background: var(--burgundy); color: var(--white); }
+  .entourage-section .section-header{ font-size: clamp(26px,6vw,40px); color: var(--gold); }
+  .entourage-sub{
+    text-align: center;
+    font-family: var(--font-script);
+    font-weight: 400;
+    font-size: clamp(24px, 5vw, 34px);
+    letter-spacing: 0.5px;
+    color: var(--gold-light);
+    margin: 10px 0 36px;
+  }
+
+  .col-divider-grid{
+    display:grid;
+    grid-template-columns: 1fr;
+    position: relative;
+  }
+  @media(min-width: 680px){
+    .col-divider-grid{ grid-template-columns: 1fr 1fr; }
+    .col-divider-grid::after{
+      content:"";
+      position:absolute;
+      top:0; bottom:0; left:50%;
+      width:1px;
+      background: var(--rule-gold);
+    }
+  }
+  .entourage-col{ padding: 0 22px 30px; }
+  .entourage-col h3{
+    font-family: var(--font-display);
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 8px;
+  }
+  .entourage-col--groom h3{
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+  }
+  .entourage-col--bride h3{
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+    text-transform: uppercase;
+  }
+  .entourage-col .name{
+    text-align: center;
+    line-height: 1.45;
+    margin-bottom: 20px;
+  }
+  .entourage-col--groom .name{
+    font-family: var(--font-script);
+    font-weight: 400;
+    font-size: 28px;
+    color: var(--white);
+  }
+  .entourage-col--bride .name{
+    font-family: var(--font-script);
+    font-weight: 400;
+    font-size: 28px;
+    color: var(--white);
+  }
+  .entourage-col .name-list{
+    font-family: var(--font-serif);
+    font-size: 16px;
+    color: var(--gold-light);
+    opacity: 0.9;
+  }
+  /* Role titles */
+  .entourage-col .group-label,
+  .role-card .group-label,
+  .sponsor-grid-block h3{
+    font-family: var(--font-sans);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--gold);
+    margin: 20px 0 10px;
+    position: relative;
+    padding-bottom: 8px;
+  }
+  .entourage-col .group-label::after,
+  .role-card .group-label::after,
+  .sponsor-grid-block h3::after{
+    content:"";
+    position:absolute;
+    bottom:0; left:50%;
+    transform: translateX(-50%);
+    width: 28px;
+    height: 1px;
+    background: var(--rule-gold);
+  }
+
+  .name-list{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.6;
+    color: var(--white);
+  }
+  .name-list li + li{ margin-top: 6px; }
+  .role-card .name-list,
+  .sponsor-cols .name-list{
+    font-family: var(--font-serif);
+    font-size: 15px;
+    color: var(--gold-light);
+    opacity: 0.9;
+  }
+  .name-list li.sponsor-couple{
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 12px;
+  }
+  .name-list li.sponsor-couple .sponsor-person{
+    display: block;
+    line-height: 1.45;
+  }
+  .sponsor-cols .name-list > li:not(.sponsor-couple){
+    margin-bottom: 12px;
+  }
+  .memorial-cross{
+    color: var(--gold);
+    font-size: 0.92em;
+    margin-left: 4px;
+    vertical-align: baseline;
+  }
+
+  .entourage-divider{
+    border:none;
+    border-top: 1px solid var(--rule-gold);
+    width: 70%;
+    margin: 26px auto;
+  }
+
+  .sponsor-grid-block{ padding: 0 22px; }
+  .sponsor-grid-block h3{
+    margin: 0 0 16px;
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+  .sponsor-cols{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 4px 30px;
+  }
+  @media(min-width:680px){ .sponsor-cols{ grid-template-columns: 1fr 1fr; } }
+  .sponsor-cols .name-list{ text-align:left; }
+
+  .roles-grid{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 26px;
+    margin-top: 26px;
+  }
+  @media(min-width:680px){ .roles-grid{ grid-template-columns: repeat(3,1fr); } }
+
+  @media (max-width: 680px){
+    .love-story-row{
+      grid-template-columns: 1fr;
+      max-width: 340px;
+      gap: 14px;
+    }
+    .col-divider-grid .entourage-col--groom,
+    .col-divider-grid .entourage-col--bride{
+      padding-bottom: 28px;
+    }
+    .col-divider-grid .entourage-col--bride{
+      border-top: 1px solid var(--rule-gold);
+      padding-top: 28px;
+    }
+  }
+  .role-card{ text-align: center; }
+  .role-card .group-label{ margin-top: 0; font-size: 12px; }
+
+  /* ============================================================
+     5. SECTION E — WEDDING GALLERY (ivory light section)
+     ============================================================ */
+  .gallery-section{ padding: 56px 0; background: var(--paper-dark); }
+  .gallery-section .section-header{ font-size: clamp(26px,6vw,40px); margin-bottom: 30px; color: var(--burgundy); }
+
+  .gallery-grid{
+    display:grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+  }
+  /* Row 1: two equal landscape boxes */
+  .g-1{ grid-column: 1 / 4; aspect-ratio: 4/3; }
+  .g-2{ grid-column: 4 / 7; aspect-ratio: 4/3; }
+  /* Row 2: three equal portrait boxes */
+  .g-3{ grid-column: 1 / 3; aspect-ratio: 3/4; }
+  .g-4{ grid-column: 3 / 5; aspect-ratio: 3/4; }
+  .g-5{ grid-column: 5 / 7; aspect-ratio: 3/4; }
+  /* Row 3: one full-width feature landscape */
+  .g-6{ grid-column: 1 / 7; aspect-ratio: 16/8; }
+  /* Row 4: two equal portrait boxes */
+  .g-7{ grid-column: 1 / 4; aspect-ratio: 3/4; }
+  .g-8{ grid-column: 4 / 7; aspect-ratio: 3/4; }
+
+  @media (max-width: 600px){
+    .gallery-grid{ grid-template-columns: repeat(2,1fr); }
+    .g-1,.g-2,.g-6,.g-7,.g-8{ grid-column: span 2; }
+    .g-3,.g-4,.g-5{ grid-column: span 1; }
+    .g-3{ grid-column: 1/2; } .g-4{ grid-column: 2/3; } .g-5{ grid-column: 1/3; aspect-ratio: 16/9; }
+  }
+
+  /* ============================================================
+     6. SECTION F — DRESS CODE & ETIQUETTE (Burgundy dark section)
+     ============================================================ */
+  .dresscode-section{ padding: 56px 0; background: var(--burgundy); color: var(--white); }
+  .dresscode-section .section-header{ font-size: clamp(26px,6vw,40px); color: var(--gold); }
+  .dresscode-title{
+    text-align:center;
+    font-family: var(--font-script);
+    font-weight: 400;
+    font-size: 34px;
+    color: var(--gold-light);
+    margin: 16px 0 26px;
+  }
+
+  .attire-block{
+    max-width: 560px;
+    margin: 0 auto 30px;
+    text-align:center;
+  }
+  .attire-group{ margin-bottom: 18px; }
+  .attire-group .group-label{
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .attire-group p{
+    font-family: var(--font-serif);
+    font-size: clamp(16px, 3.6vw, 18px);
+    font-style: italic;
+    line-height: 1.8;
+    margin: 6px 0;
+    color: var(--gold-light);
+    opacity: 0.9;
+  }
+
+  .swatches{
+    display:flex;
+    justify-content:center;
+    flex-wrap: wrap;
+    gap: 18px;
+    margin: 26px 0 8px;
+  }
+  .swatch{ display:flex; flex-direction:column; align-items:center; gap:8px; }
+  .swatch .circle{
+    width: 46px; height:46px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  .swatch .circle.sunflower-gold{ background: var(--sunflower-gold); }
+  .swatch .circle.vibe-1{ background: var(--vibe-1); }
+  .swatch .circle.vibe-2{ background: var(--vibe-2); }
+  .swatch .circle.vibe-3{ background: var(--vibe-3); }
+  .swatch .circle.vibe-4{ background: var(--vibe-4); }
+  .swatch .circle.vibe-5{ background: var(--vibe-5); }
+  .swatch .circle.vibe-6{ background: var(--vibe-6); }
+  .swatch .circle.vibe-7{ background: var(--vibe-7); }
+  .swatch .circle.vibe-8{ background: var(--vibe-8); }
+  .swatch .name{
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    opacity: 0.8;
+    max-width: 70px;
+    text-align: center;
+  }
+
+  /* "The Vibe" formal attire callout */
+  .vibe-quote{
+    text-align:center;
+    max-width: 560px;
+    margin: 0 auto 8px;
+  }
+  .vibe-quote .vibe-eyebrow{
+    font-family: var(--font-sans);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .vibe-quote .vibe-title{
+    font-family: var(--font-script);
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--gold-light);
+    margin-bottom: 16px;
+  }
+
+  .info-cards{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    max-width: 640px;
+    margin: 38px auto 0;
+  }
+  @media (min-width: 700px){
+    .info-cards{
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Long Hashtag Block */
+  .long-hashtag-block{
+    max-width: 640px;
+    margin: 24px auto 0;
+    text-align: center;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid var(--rule-gold);
+    border-radius: 10px;
+    padding: 24px 20px;
+  }
+  .long-hashtag-label{
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .long-hashtag{
+    font-family: var(--font-script);
+    font-size: clamp(26px, 6vw, 36px);
+    font-weight: 400;
+    color: var(--gold-light);
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    word-break: break-word;
+  }
+  .long-hashtag-note{
+    font-family: var(--font-serif);
+    font-size: 15.5px;
+    color: var(--gold-light);
+    opacity: 0.85;
+    max-width: 440px;
+    margin: 0 auto;
+    line-height: 1.55;
+  }
+
+  /* Mobile improvements for long rectangle and long hashtag blocks */
+  @media (max-width: 480px){
+    .long-rectangle-block{
+      padding: 22px 18px;
+      margin: 22px auto 0;
+    }
+    .long-rectangle-label{
+      font-size: 15px;
+    }
+    .long-rectangle-text{
+      font-size: 17px;
+      line-height: 1.7;
+    }
+    .long-hashtag-block{
+      padding: 22px 16px;
+      margin: 22px auto 0;
+    }
+    .long-hashtag-label{
+      font-size: 14px;
+    }
+    .long-hashtag{
+      font-size: clamp(19px, 5.5vw, 24px);
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+    .long-hashtag-note{
+      font-size: 15px;
+    }
+  }
+
+  /* Long Rectangle Block (Please Stay) */
+  .long-rectangle-block{
+    max-width: 640px;
+    margin: 24px auto 0;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--rule-gold);
+    border-radius: 10px;
+    padding: 22px 24px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .long-rectangle-icon{
+    flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(201,168,76,0.15);
+    border-radius: 8px;
+  }
+  .long-rectangle-icon svg{
+    width: 22px;
+    height: 22px;
+    color: var(--gold);
+  }
+  .long-rectangle-content{
+    flex: 1;
+  }
+  .long-rectangle-label{
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .long-rectangle-text{
+    font-family: var(--font-serif);
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--gold-light);
+    opacity: 0.92;
+  }
+
+  .info-card{
+    display:grid;
+    grid-template-columns: 96px 1fr;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--rule-gold);
+    border-radius: 8px;
+    overflow:hidden;
+  }
+  .info-card .icon-cell{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap: 6px;
+    padding: 14px 6px;
+    border-right: 1px solid var(--rule-gold);
+  }
+  .info-card .icon-cell svg{ width:24px; height:24px; opacity:0.95; color: var(--gold); }
+  .info-card .icon-cell .icon-label{
+    font-family: var(--font-sans);
+    font-weight:700;
+    font-size: 9px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    text-align:center;
+  }
+  .info-card .text-cell{
+    color: var(--gold-light);
+    font-family: var(--font-serif);
+    font-size: 13px;
+    line-height: 1.65;
+    padding: 16px 18px;
+  }
+  .info-card .text-cell strong{ color: var(--gold); }
+
+  /* ============================================================
+     6b. DONATION / MONETARY GIFT — QR codes
+     ============================================================ */
+  .donation-block{
+    max-width: 640px;
+    margin: 46px auto 0;
+    text-align:center;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--rule-gold);
+    border-radius: 10px;
+    padding: 28px 22px 26px;
+  }
+  .donation-block .donation-title{
+    font-family: var(--font-script);
+    font-weight: 400;
+    font-size: 32px;
+    margin-bottom: 6px;
+    color: var(--gold-light);
+  }
+  .donation-block .donation-sub{
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 16px;
+    color: var(--gold-light);
+    opacity: 0.88;
+    max-width: 520px;
+    margin: 0 auto 22px;
+    line-height: 1.7;
+  }
+  .qr-grid{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  @media (min-width: 620px){
+    .qr-grid{ grid-template-columns: 1fr 1fr; }
+  }
+  .qr-card{
+    background: var(--ivory);
+    border: 2px solid var(--gold-dark);
+    border-radius: 10px;
+    padding: 20px 18px 18px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap: 10px;
+  }
+  .qr-card img.qr-img{
+    width: 100%;
+    max-width: 210px;
+    border-radius: 6px;
+    border: 1px solid var(--rule-gold);
+  }
+  .qr-card .qr-label{
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-top: 4px;
+  }
+  .qr-card .qr-name{
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--burgundy);
+  }
+
+  /* ============================================================
+     7. CLOSING RSVP & SITE FOOTER (Attached to burgundy section)
+     ============================================================ */
+  .closing-message{
+    text-align: center;
+    padding: 28px 24px 54px;
+    background: var(--burgundy);
+    border-top: 1px solid var(--rule-gold);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+  }
+  .closing-monogram{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4px;
+  }
+  .closing-monogram img{
+    width: 165px;
+    height: 165px;
+    object-fit: cover;
+    border-radius: 50%;
+    mix-blend-mode: lighten;
+    animation: float-monogram 5.5s ease-in-out infinite;
+    filter: drop-shadow(0 4px 18px rgba(201,168,76,0.35));
+  }
+  .closing-rsvp{
+    font-family: var(--font-display);
+    font-size: clamp(22px, 5vw, 30px);
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 2px 0;
+  }
+  .closing-message p{
+    font-family: var(--font-script);
+    font-size: clamp(32px, 7.5vw, 52px);
+    font-weight: 400;
+    color: var(--gold);
+    line-height: 1.35;
+    margin: 0 auto;
+    max-width: 720px;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.25);
+  }
+
+  .site-footer{
+    text-align:center;
+    padding: 22px 0 36px;
+    background: var(--burgundy-2);
+    border-top: 1px solid var(--rule-gold);
+    font-family: var(--font-sans);
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--gold-light);
+    opacity: 0.85;
+    text-transform: uppercase;
+  }
+
+  /* generic section spacing rhythm */
+  section + section{ border-top: none; }
+
+  /* ============================================================
+     8. MOBILE OPTIMIZATIONS (phones, <=480px)
+     ============================================================ */
+  @media (max-width: 480px){
+    .container{ padding: 0 16px; }
+
+    .hero{ padding-top: 16px; }
+    .hero .masthead{ padding: 8px 0 10px; }
+
+    .hero-banner{ font-size: 22px; letter-spacing: 1px; padding: 12px 8px; }
+
+    .invite-line{ font-size: 12px; letter-spacing: 2.5px; padding: 16px 0 6px; }
+
+    .hero-grid{
+      grid-template-columns: 1.18fr 1fr;
+      gap: 12px;
+      padding: 8px 0 14px;
+      flex: 1;
+      align-items: center;
+    }
+
+    .hero-portrait{
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+    .hero-portrait .photo-frame-wrap{
+      width: 100%;
+      height: 100%;
+    }
+    .hero-portrait .photo-frame{
+      aspect-ratio: 9 / 15;
+      min-height: 310px;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    .hero-right{ gap: 16px; }
+
+    .invite-names{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-size: clamp(34px, 9.2vw, 44px);
+      line-height: 1.15;
+    }
+    .invite-names .amp{
+      padding: 4px 0;
+      font-size: 0.78em;
+    }
+
+    .invite-date{
+      font-size: 11px;
+      letter-spacing: 1.2px;
+      line-height: 1.45;
+    }
+
+    .hero-couple-line{
+      font-size: clamp(20px, 5.5vw, 26px);
+      padding: 14px 0 18px;
+      line-height: 1.35;
+      letter-spacing: 1px;
+    }
+    .hero-couple-line .dot{ padding: 0 8px; }
+
+    .countdown{ gap: 6px; width: 100%; margin-top: 6px; }
+    .countdown .unit{ padding: 10px 2px 8px; }
+
+    .dark-section{ padding: 40px 0 48px; }
+    .dark-section .section-header{ font-size: clamp(32px, 8.5vw, 44px); }
+    .dark-section .our-story-eyebrow{ font-size: 25px; margin-bottom: 28px; }
+    .love-story-row{
+      grid-template-columns: 1fr;
+      gap: 14px;
+      max-width: 320px;
+    }
+    .love-story-item{ gap: 16px; padding: 28px 18px 22px; }
+    .love-story-item img{ width: 110px; max-width: 110px; }
+    .love-story-item .love-story-date{ font-size: 23px; }
+
+    .song-block{
+      margin-top: 36px;
+      padding: 30px 18px 28px;
+    }
+    .song-block .section-header{ font-size: clamp(26px, 7.5vw, 34px); }
+    .song-block .song-eyebrow{ font-size: 20px; margin-bottom: 12px; }
+    .song-block .song-instructions{ font-size: 15px; }
+    .song-title-block .song-name{ font-size: 26px; }
+    .song-title-block .song-artist{ font-size: 12px; }
+
+    .timeline-section{ padding: 40px 0; }
+    .itinerary-row{ gap: 10px; margin-bottom: 32px; }
+    .itinerary-block{ padding: 14px 8px; }
+
+    .entourage-section{ padding: 40px 0; }
+    .entourage-section .section-header{ font-size: clamp(40px, 11vw, 56px); }
+    .entourage-sub{ font-size: 26px; margin: 8px 0 28px; }
+    .entourage-col{ padding: 0 14px 24px; }
+    .entourage-col--groom h3,
+    .entourage-col--bride h3{ font-size: 26px; }
+    .entourage-col--groom .name{ font-size: 26px; }
+    .entourage-col--bride .name{ font-size: 26px; }
+    .entourage-col .name-list{ font-size: 20px; }
+    .entourage-col .group-label,
+    .role-card .group-label,
+    .sponsor-grid-block h3{ font-size: 15px; letter-spacing: 1.5px; }
+    .name-list{ font-size: 21px; line-height: 1.65; }
+    .role-card .name-list,
+    .sponsor-cols .name-list{ font-size: 20px; }
+    .sponsor-cols .name-list{ text-align: center; }
+    .sponsor-cols .name-list li{ padding: 0 6px; }
+    .roles-grid{ gap: 20px; }
+
+    .attire-group p{ font-size: 16px; line-height: 1.85; }
+    .attire-group .group-label{ font-size: 14px; }
+
+    .gallery-section{ padding: 40px 0; }
+    .gallery-grid{ gap: 8px; }
+
+    .dresscode-section{ padding: 40px 0; }
+    .swatches{ gap: 18px; }
+    .swatch .circle{ width: 44px; height: 44px; }
+
+    .info-card{ grid-template-columns: 1fr; }
+    .info-card .icon-cell{
+      flex-direction: row;
+      border-right: none;
+      border-bottom: 1px solid var(--rule-gold);
+      padding: 10px;
+      gap: 8px;
+    }
+
+    .site-footer{ font-size: 9px; padding: 20px 0 30px; }
+  }
+
+  /* ============================================================
+     9. MOBILE PAGE-BY-PAGE LAYOUT
+     ============================================================ */
+  @media (max-width: 820px){
+    .hero-monogram{ display: none; }
+    .dark-section .section-header{ font-size: clamp(28px, 8vw, 42px); }
+    .dark-section .our-story-eyebrow{ font-size: 25px; }
+    .love-story-row{ gap: 16px; }
+    .love-story-item{ padding: 30px 14px 24px; }
+    .love-story-item img{ max-width: 120px; }
+    .love-story-item .love-story-date{ font-size: 23px; }
+    .song-block{ padding: 32px 18px 28px; }
+    .song-block .section-header{ font-size: clamp(22px, 6vw, 32px); }
+    .song-title-block .song-name{ font-size: 28px; }
+
+    .hero,
+    .dark-section,
+    .timeline-section,
+    .entourage-section,
+    .gallery-section,
+    .dresscode-section{
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    /* Stretch the hero body container on mobile so the portrait + names
+       fill the middle space and NJ & MD sits right at the bottom boundary */
+    .hero > .container:last-child{
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    /* sections with a lot of content (long sponsor lists, the 8-photo
+       grid, a tall portrait + countdown) start from the top instead of
+       centering, so the beginning of the content is never cut off */
+    .hero,
+    .entourage-section,
+    .gallery-section{
+      justify-content: flex-start;
+    }
+    .entourage-section,
+    .gallery-section{
+      padding-top: 36px;
+    }
+
+    /* page indicator dots */
+    .page-dots{
+      position: fixed;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      z-index: 40;
+    }
+    .page-dots .dot{
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(74,14,26,0.25);
+      transition: background .2s ease, transform .2s ease;
+    }
+    .page-dots .dot.on-dark-page{ background: rgba(201,168,76,0.45); }
+    .page-dots .dot.active{ background: var(--gold); transform: scale(1.4); }
+  }
+
+  @media (min-width: 821px){
+    .page-dots{ display:none; }
+  }
+
+  /* ============================================================
+     10. SCROLL-REVEAL ANIMATION SYSTEM
+     Elements start slightly offset + transparent, then ease into
+     place the moment they enter the viewport (JS toggles
+     `.is-visible` via IntersectionObserver, see bottom of page).
+     Everything here is additive — no layout is affected before
+     JS runs, since the "hidden" state is only ever the starting
+     point of a transition, never a permanent one.
+     ============================================================ */
+  .reveal{
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s cubic-bezier(.22,.68,0,1.01),
+                transform 0.8s cubic-bezier(.22,.68,0,1.01);
+    transition-delay: var(--reveal-delay, 0s);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible{
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-fade{ transform: none; }
+  .reveal-scale{ transform: scale(0.92); }
+  .reveal-scale.is-visible{ transform: scale(1); }
+  .reveal-left{ transform: translateX(-32px); }
+  .reveal-left.is-visible{ transform: translateX(0); }
+  .reveal-right{ transform: translateX(32px); }
+  .reveal-right.is-visible{ transform: translateX(0); }
+
+  /* image entrances get a touch of scale so photos feel like they're
+     settling into their frame rather than just sliding up */
+  img.reveal, .photo-frame.reveal, .placeholder-box.reveal{
+    transform: translateY(22px) scale(1.035);
+  }
+  img.reveal.is-visible, .photo-frame.reveal.is-visible, .placeholder-box.reveal.is-visible{
+    transform: translateY(0) scale(1);
+  }
+
+  /* gentle floating idle animation for the hero monogram, purely
+     decorative, gives the very first thing a visitor sees a pulse
+     of life without demanding attention */
+  .hero-monogram img{
+    animation: float-monogram 5.5s ease-in-out infinite;
+  }
+  @keyframes float-monogram{
+    0%,100%{ transform: translateY(0); }
+    50%{ transform: translateY(-6px); }
+  }
+
+  /* countdown numbers tick with a soft pop whenever they change */
+  .countdown .unit .num{
+    display:inline-block;
+    transition: transform 0.25s ease;
+  }
+  .countdown .unit .num.tick{ transform: scale(1.18); }
+
+  /* buttons / tappable things: instant visual feedback on touch,
+     and no lingering grey tap-highlight box on mobile browsers */
+  a, button, .view-map-btn, .song-play-btn, .song-yt-btn, .bgm-toggle, .bgm-yt-link, .page-dots .dot{
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .view-map-btn:active, .song-yt-btn:active{ transform: scale(0.96); }
+  .song-play-btn:active{ transform: scale(0.88); }
+  .bgm-toggle:active{ transform: scale(0.9); }
+
+  /* smoother, native-feeling momentum scroll on iOS. Applied to the
+     single document scroller now — the individual sections are no
+     longer separate overflow:auto containers, since nesting two
+     scrollers (the page + each section) was what made the snap
+     transitions feel abrupt/incomplete and made scrolling back up
+     unreliable. One scroller, one snap timeline, smooth both ways. */
+  @media (max-width: 820px){
+    html, body{
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  /* Subtle 5-second idle scroll-down helper on the first page */
+  .scroll-hint{
+    position: fixed;
+    bottom: 18px;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    z-index: 45;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: rgba(74, 14, 26, 0.92);
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    box-shadow: 0 4px 18px rgba(56, 11, 20, 0.28);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .scroll-hint.is-visible{
+    opacity: 0.92;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+  .scroll-hint svg{
+    width: 14px;
+    height: 14px;
+    color: var(--gold);
+    animation: scroll-hint-bob 1.8s ease-in-out infinite;
+  }
+  @keyframes scroll-hint-bob{
+    0%, 100%{ transform: translateY(-2px); }
+    50%{ transform: translateY(3px); }
+  }
+
+  /* respect visitors who've asked their OS for less motion —
+     everything just appears instantly, no sliding/scaling/floating */
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .reveal.is-visible, img.reveal, .photo-frame.reveal, .placeholder-box.reveal{
+      transition: none !important;
+      transform: none !important;
+      opacity: 1 !important;
+    }
+    .hero-monogram img, .closing-monogram img, .scroll-hint svg{ animation: none; }
+    html{ scroll-behavior: auto; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- swipe-up hint + page dots only meaningful in the mobile paged view -->
+<div class="page-dots" id="page-dots" aria-hidden="true"></div>
+
+<!-- Subtle 5-second idle scroll-down helper on the first page -->
+<button class="scroll-hint" id="scroll-hint" type="button" aria-label="Scroll down to explore">
+  <span>Scroll Down</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M7 10l5 5 5-5"/>
+    <path d="M7 5l5 5 5-5" opacity="0.55"/>
+  </svg>
+</button>
+
+<!-- ================================================================
+     FLOATING BACKGROUND MUSIC PLAYER
+     Stays fixed on screen and keeps playing while you scroll.
+     Tap the note to play/pause; tap the small YouTube icon to open
+     the full song ("On This Day" — David Pomeranz) on YouTube.
+     ================================================================ -->
+<div class="bgm-player" id="bgm-player">
+  <a class="bgm-yt-link" id="bgm-yt-link" href="#" target="_blank" rel="noopener" title="Open in YouTube" aria-label="Open song in YouTube">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+  </a>
+  <button class="bgm-toggle" id="bgm-toggle" type="button" aria-label="Play background music">
+    <svg class="bgm-icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="bgm-icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+  </button>
+</div>
+
+
+<!-- ================================================================
+     SECTION A — THE WEDDING POST (HERO)
+     ================================================================ -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-monogram">
+      <img src="images/mono.png" alt="NJ &amp; MD monogram">
+    </div>
+    <hr class="masthead-rule">
+    <div class="masthead">
+      <h1 class="section-header">The Wedding Post</h1>
+    </div>
+    <hr class="masthead-rule">
+  </div>
+
+  <div class="hero-banner">We Are Getting Married!</div>
+
+  <div class="container">
+    <!-- Upper side: You're Invited to the Wedding of -->
+    <div class="invite-line">You're Invited to the Wedding of</div>
+
+    <!-- Middle row: Left = Hero picture, Right = Names & Date -->
+    <div class="hero-grid">
+      <div class="hero-portrait">
+        <img class="photo-frame" id="ph-hero-portrait" src="1.jpg" alt="Groom and bride portrait" loading="eager" fetchpriority="high" decoding="async">
+      </div>
+
+      <div class="hero-right">
+        <div class="invite-names"><span id="groom-name-1">Norly John</span><span class="amp">&amp;</span><span id="bride-name-1">Ma. Dolor</span></div>
+        <div class="invite-date" id="wedding-date-long">[Day of Week], [Month] [Day], [Year]</div>
+      </div>
+    </div>
+
+    <!-- Bottom: Countdown and NJ & MD -->
+    <div class="countdown" id="countdown">
+      <div class="unit"><span class="num" id="cd-days">00</span><span class="lbl">Days</span></div>
+      <div class="unit"><span class="num" id="cd-hours">00</span><span class="lbl">Hours</span></div>
+      <div class="unit"><span class="num" id="cd-mins">00</span><span class="lbl">Minutes</span></div>
+      <div class="unit"><span class="num" id="cd-secs">00</span><span class="lbl">Seconds</span></div>
+    </div>
+
+    <div class="hero-couple-line"><span id="groom-name-2">NJ</span><span class="dot">&bull;</span>&amp;<span class="dot">&bull;</span><span id="bride-name-2">MD</span></div>
+  </div>
+</header>
+
+<div class="lace-border-top" aria-hidden="true"></div>
+
+<!-- ================================================================
+     SECTION B — OUR STORY & OUR SONG (dark interlude)
+     ================================================================ -->
+<section class="dark-section" id="our-story">
+  <div class="container">
+    <div class="gold-ornament" aria-hidden="true">&#10022; &#10042; &#10022;</div>
+    <h2 class="section-header on-dark">Our Story</h2>
+    <div class="our-story-eyebrow">A Timeline of Us</div>
+
+    <div class="love-story-row">
+      <div class="love-story-item">
+        <img src="images/love-story-1.png" alt="The day we met" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23E8D5A3%22 stroke-width=%221.4%22%3E&lt;path d=%22M20.8 8.6c0 4.3-8.8 10.6-8.8 10.6S3.2 12.9 3.2 8.6A4.6 4.6 0 0 1 12 6.2a4.6 4.6 0 0 1 8.8 2.4z%22/%3E&lt;/svg%3E';">
+        <div class="love-story-date" id="love-story-date-1">01.18.2019</div>
+      </div>
+      <div class="love-story-item">
+        <img src="images/love-story-2.png" alt="The day we got engaged" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23E8D5A3%22 stroke-width=%221.4%22%3E&lt;circle cx=%2212%22 cy=%2212%22 r=%227%22/%3E&lt;path d=%22M12 5v2M19 12h-2M12 19v-2M5 12h2%22/%3E&lt;/svg%3E';">
+        <div class="love-story-date" id="love-story-date-2">11.24.2024</div>
+      </div>
+      <div class="love-story-item">
+        <img src="images/love-story-3.png" alt="Our wedding day" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23E8D5A3%22 stroke-width=%221.4%22%3E&lt;path d=%22M4 21V11l8-6 8 6v10%22/%3E&lt;path d=%22M9 21v-6h6v6%22/%3E&lt;/svg%3E';">
+        <div class="love-story-date" id="love-story-date-3">10.18.2026</div>
+      </div>
+    </div>
+
+    <!-- OUR SONG -->
+    <div class="song-block">
+      <div class="song-eyebrow">Now Playing</div>
+      <h2 class="section-header on-dark">Our Song</h2>
+      <p class="song-instructions">Our song plays automatically when you open this page. Use the button in the corner (or the one below) any time to play, pause, or turn the sound on.</p>
+      <div class="song-title-block">
+        <div class="song-name" id="song-name">&ldquo;On This Day&rdquo;</div>
+        <div class="song-artist" id="song-artist">David Pomeranz</div>
+      </div>
+
+      <div class="song-player">
+        <div class="song-video-wrap">
+          <!-- EASY SWAP: change CONFIG.song.mediaSrc near the bottom of this file
+               to point at your own downloaded audio/video file (e.g. "media/our-song.mp4"). -->
+          <video id="site-song-video" class="local-song-video" autoplay muted playsinline loop preload="auto"></video>
+          <button class="song-play-btn" id="song-play-btn" type="button" aria-label="Play our song">
+            <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <p class="song-disclaimer">A downloaded copy of this song plays here purely for the convenience of our guests while browsing the site. All rights to this recording belong to its original artist and label — please support them by streaming the official version on YouTube.</p>
+
+      <a class="song-yt-btn" id="song-yt-btn" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        Play on YouTube
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="lace-border-bottom" aria-hidden="true"></div>
+
+<!-- ================================================================
+     SECTION C — WEDDING TIMELINE
+     ================================================================ -->
+<section class="timeline-section" id="timeline">
+  <div class="container">
+    <div class="gold-ornament" aria-hidden="true">&#10022; &#10042; &#10022;</div>
+    <h2 class="section-header">Wedding Timeline</h2>
+
+    <div class="itinerary-row">
+      <div class="itinerary-block">
+        <!-- Formal Grand Church Archway & Cross Icon (Arrival) -->
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 4v6M21 7h6"/>
+          <path d="M10 42V22l14-12 14 12v20"/>
+          <path d="M6 42h36"/>
+          <path d="M18 42V30a6 6 0 0 1 12 0v12"/>
+          <path d="M24 24v18"/>
+          <circle cx="24" cy="18" r="2.5"/>
+          <path d="M9 13l1.5 1.5M39 13l-1.5 1.5"/>
+        </svg>
+        <div class="time">8:30 AM</div>
+        <div class="label">Arrival</div>
+      </div>
+      <div class="itinerary-block">
+        <!-- Formal Interlocking Wedding Bands & Diamond Icon (Ceremony) -->
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="19" cy="28" r="9"/>
+          <circle cx="29" cy="28" r="9"/>
+          <path d="M19 16l-3.5-4.5L19 8l3.5 3.5L19 16z"/>
+          <path d="M29 6v4M27 8h4"/>
+          <path d="M11 11l2 2M37 11l-2 2"/>
+          <path d="M15 41c4 2 14 2 18 0"/>
+        </svg>
+        <div class="time">9:00 AM</div>
+        <div class="label">Ceremony</div>
+      </div>
+      <div class="itinerary-block">
+        <!-- Formal Clinking Champagne Flutes & Starburst Icon (Reception) -->
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 10h8l-2 13a4 4 0 0 1-4 3.4A4 4 0 0 1 12 23l2-13z"/>
+          <path d="M16 26.4V38M12 38h8"/>
+          <path d="M26 10h8l2 13a4 4 0 0 1-4 3.4A4 4 0 0 1 28 23l-2-13z"/>
+          <path d="M32 26.4V38M28 38h8"/>
+          <path d="M13 16h7.5M27.5 16H35"/>
+          <path d="M24 4v3M20.5 6l1.5 1.5M27.5 6L26 7.5"/>
+          <circle cx="17" cy="20" r="0.9" fill="currentColor"/>
+          <circle cx="31" cy="20" r="0.9" fill="currentColor"/>
+        </svg>
+        <div class="time">11:30 AM</div>
+        <div class="label">Reception</div>
+      </div>
+      <div class="itinerary-block">
+        <!-- Formal Sparkling Stars & Romantic Heart Crest Icon (Send Off) -->
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 17c0-3.5 4.5-5.5 7-2.5 2.5 3-1 7.5-7 11.5-6-4-9.5-8.5-7-11.5 2.5-3 7-1 7 2.5z"/>
+          <path d="M10 39L22 27M38 39L26 27"/>
+          <path d="M12 8l1.2 2.8L16 12l-2.8 1.2L12 16l-1.2-2.8L8 12l2.8-1.2L12 8z"/>
+          <path d="M36 8l1.2 2.8L40 12l-2.8 1.2L36 16l-1.2-2.8L32 12l2.8-1.2L36 8z"/>
+          <path d="M24 4l0.8 1.8L26.6 6.6l-1.8 0.8L24 9.2l-0.8-1.8L21.4 6.6l1.8-0.8L24 4z"/>
+        </svg>
+        <div class="time">3:00 PM</div>
+        <div class="label">Send Off</div>
+      </div>
+    </div>
+
+    <div class="venue-row">
+      <div class="venue-card">
+        <img class="photo-frame rounded" id="ph-venue-ceremony" src="images/ceremony.jpg" alt="Ceremony venue" loading="lazy" decoding="async">
+        <div class="venue-name" id="venue-ceremony-name">Ceremony Venue Name</div>
+        <div class="venue-sub" id="venue-ceremony-location">City, Province</div>
+        <button class="view-map-btn" id="venue-ceremony-map-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.4-7-11a7 7 0 1 1 14 0c0 5.6-7 11-7 11z"/><circle cx="12" cy="10" r="2.3"/></svg>
+          View Map
+        </button>
+      </div>
+      <div class="venue-card">
+        <img class="photo-frame rounded" id="ph-venue-reception" src="images/reception.jpg" alt="Reception venue" loading="lazy" decoding="async">
+        <div class="venue-name" id="venue-reception-name">Reception Venue Name</div>
+        <div class="venue-sub" id="venue-reception-location">City, Province</div>
+        <button class="view-map-btn" id="venue-reception-map-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.4-7-11a7 7 0 1 1 14 0c0 5.6-7 11-7 11z"/><circle cx="12" cy="10" r="2.3"/></svg>
+          View Map
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lace-border-top" aria-hidden="true"></div>
+
+<!-- ================================================================
+     SECTION D — THE ENTOURAGE & SPONSORS (editorial columns)
+     ================================================================ -->
+<section class="entourage-section" id="entourage">
+  <div class="container">
+    <div class="gold-ornament" aria-hidden="true">&#10022; &#10042; &#10022;</div>
+    <h2 class="section-header">The Entourage</h2>
+    <div class="entourage-sub"><span id="groom-surname">Groom Surname</span> &ndash; <span id="bride-surname">Bride Surname</span> Nuptials</div>
+
+    <div class="col-divider-grid">
+      <div class="entourage-col entourage-col--groom">
+        <h3>Groom</h3>
+        <div class="name" id="groom-full-name">Groom Full Name</div>
+        <div class="group-label">Parents of the Groom</div>
+        <ul class="name-list">
+          <li>Mr. <span id="groom-father-name">Norlito T. Besonia</span><span class="memorial-cross" title="In Loving Memory">&#10013;</span></li>
+          <li>Mrs. <span id="groom-mother-name">Madelyn M. Besonia</span></li>
+        </ul>
+      </div>
+      <div class="entourage-col entourage-col--bride">
+        <h3>Bride</h3>
+        <div class="name" id="bride-full-name">Bride Full Name</div>
+        <div class="group-label">Parents of the Bride</div>
+        <ul class="name-list">
+          <li>Mr. <span id="bride-father-name">Rey A. Matulac</span></li>
+          <li>Mrs. <span id="bride-mother-name">Annabelle D. Matulac</span><span class="memorial-cross" title="In Loving Memory">&#10013;</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <hr class="entourage-divider">
+
+    <div class="sponsor-grid-block">
+      <h3>Principal Sponsors</h3>
+      <div class="sponsor-cols">
+        <ul class="name-list" id="principal-sponsors-col1"></ul>
+        <ul class="name-list" id="principal-sponsors-col2"></ul>
+      </div>
+    </div>
+
+    <hr class="entourage-divider">
+
+    <div class="roles-grid">
+      <div class="role-card">
+        <div class="group-label">Best Man</div>
+        <ul class="name-list" id="role-best-man"></ul>
+      </div>
+      <div class="role-card">
+        <div class="group-label">Maid of Honor</div>
+        <ul class="name-list" id="role-maid-of-honor"></ul>
+      </div>
+      <div class="role-card">
+        <div class="group-label">Groomsmen</div>
+        <ul class="name-list" id="role-groomsmen"></ul>
+      </div>
+      <div class="role-card">
+        <div class="group-label">Bridesmaids</div>
+        <ul class="name-list" id="role-bridesmaids"></ul>
+      </div>
+      <div class="role-card">
+        <div class="group-label">Flower Girls</div>
+        <ul class="name-list" id="role-flower-girls"></ul>
+      </div>
+      <div class="role-card">
+        <div class="group-label">Ring / Coin / Bible Bearers / Banner</div>
+        <ul class="name-list" id="role-bearers"></ul>
+      </div>
+    </div>
+
+    <hr class="entourage-divider">
+
+    <div class="sponsor-grid-block">
+      <h3>Secondary Sponsors</h3>
+      <div class="roles-grid" style="margin-top:0;">
+        <div class="role-card">
+          <div class="group-label">Candle</div>
+          <ul class="name-list" id="sponsor-candle"></ul>
+        </div>
+        <div class="role-card">
+          <div class="group-label">Veil</div>
+          <ul class="name-list" id="sponsor-veil"></ul>
+        </div>
+        <div class="role-card">
+          <div class="group-label">Cord</div>
+          <ul class="name-list" id="sponsor-cord"></ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="lace-border-bottom" aria-hidden="true"></div>
+
+<!-- ================================================================
+     SECTION E — WEDDING GALLERY (newspaper photo collage)
+     ================================================================ -->
+<section class="gallery-section" id="gallery">
+  <div class="container">
+    <div class="gold-ornament" aria-hidden="true">&#10022; &#10042; &#10022;</div>
+    <h2 class="section-header">Wedding Gallery</h2>
+
+    <div class="gallery-grid">
+      <div class="g-1"><img class="photo-frame rounded" style="height:100%;" src="gallery-1.jpg" alt="Wedding gallery photo 1" loading="lazy" decoding="async"></div>
+      <div class="g-2"><img class="photo-frame rounded" style="height:100%;" src="gallery-2.jpg" alt="Wedding gallery photo 2" loading="lazy" decoding="async"></div>
+
+      <div class="g-3"><img class="photo-frame rounded" style="height:100%;" src="gallery-3.jpg" alt="Wedding gallery photo 3" loading="lazy" decoding="async"></div>
+      <div class="g-4"><img class="photo-frame rounded" style="height:100%;" src="gallery-4.jpg" alt="Wedding gallery photo 4" loading="lazy" decoding="async"></div>
+      <div class="g-5"><img class="photo-frame rounded" style="height:100%;" src="gallery-5.jpg" alt="Wedding gallery photo 5" loading="lazy" decoding="async"></div>
+
+      <div class="g-6"><img class="photo-frame rounded" style="height:100%;" src="gallery-6.jpg" alt="Wedding gallery photo 6" loading="lazy" decoding="async"></div>
+
+      <div class="g-7"><img class="photo-frame rounded" style="height:100%;" src="gallery-7.jpg" alt="Wedding gallery photo 7" loading="lazy" decoding="async"></div>
+      <div class="g-8"><img class="photo-frame rounded" style="height:100%;" src="gallery-8.jpg" alt="Wedding gallery photo 8" loading="lazy" decoding="async"></div>
+    </div>
+  </div>
+</section>
+
+<div class="lace-border-top" aria-hidden="true"></div>
+
+<!-- ================================================================
+     SECTION F — DRESS CODE & ETIQUETTE CARDS
+     ================================================================ -->
+<section class="dresscode-section" id="dresscode">
+  <div class="container">
+    <div class="gold-ornament" aria-hidden="true">&#10022; &#10042; &#10022;</div>
+    <h2 class="section-header">Dress Code</h2>
+    <div class="dresscode-title">Attire &amp; Colors</div>
+
+    <div class="attire-block">
+      <div class="attire-group">
+        <div class="group-label">Principal Sponsors</div>
+        <p>Ninong, we'd be honored to see you in a cream or beige barong tagalog.</p>
+        <p>Ninang, floor length or long gown in shades of champagne, beige, gold, or warm-tan.</p>
+      </div>
+      <div class="attire-group">
+        <div class="group-label">Guests &mdash; Formal Attire</div>
+        <p>Neutral and warm tones — champagne, beige, nude, warm-tan, camel, rose, blush &amp; peach.</p>
+      </div>
+
+      <div class="swatches">
+        <div class="swatch">
+          <div class="circle vibe-1"></div>
+          <div class="name">Champagne</div>
+        </div>
+        <div class="swatch">
+          <div class="circle vibe-2"></div>
+          <div class="name">Beige</div>
+        </div>
+        <div class="swatch">
+          <div class="circle vibe-3"></div>
+          <div class="name">Nude</div>
+        </div>
+        <div class="swatch">
+          <div class="circle vibe-4"></div>
+          <div class="name">Warm Tan</div>
+        </div>
+        <div class="swatch">
+          <div class="circle vibe-5"></div>
+          <div class="name">Camel</div>
+        </div>
+        <div class="swatch">
+          <div class="circle vibe-6"></div>
+          <div class="name">Rose</div>
+        </div>
+        <div class="swatch">
+          <div class="circle vibe-7"></div>
+          <div class="name">Blush</div>
+        </div>
+        <div class="swatch">
+          <div class="circle vibe-8"></div>
+          <div class="name">Peach</div>
+        </div>
+      </div>
+    </div>
+
+     
+
+    <!-- PLEASE STAY (Long Rectangle) -->
+    <div class="long-rectangle-block">
+      <div class="long-rectangle-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+      </div>
+      <div class="long-rectangle-content">
+        <div class="long-rectangle-label">Our Intimate Celebration</div>
+        <div class="long-rectangle-text">We wish we could invite everyone we love, but due to space limitations at our venue, we have chosen to share our special day with an intimate circle of family and closest friends. We have reserved seat(s) for you. Kindly stay with us until the program is complete. Thank you for understanding.</div>
+      </div>
+    </div>
+
+    <!-- LONG HASHTAG -->
+    <div class="long-hashtag-block">
+      <div class="long-hashtag-label">Our Wedding Hashtag</div>
+      <div class="long-hashtag" id="long-hashtag">#DolorablyInLoveWithNorly</div>
+      <div class="long-hashtag-note">Use this when posting photos and videos of our special day!</div>
+    </div>
+
+    <!-- MONETARY GIFT / DONATION QR CODES -->
+    <div class="donation-block">
+      <div class="donation-title"> Gift Guide</div>
+      <div class="donation-sub">With all that we have, we've been truly blessed &mdash; your presence and prayers are all that we request. But if you desire to give nonetheless, a monetary gift is one we humbly suggest. Should you wish to bless us this way, you may scan either QR code below.</div>
+      <div class="qr-grid">
+        <div class="qr-card">
+          <img class="qr-img" src="images/qr-landbank.jpg" alt="GCash donation QR code" loading="lazy" decoding="async">
+          <div class="qr-name">Norly J. Besonia</div>
+          <div class="qr-label">GCash</div>
+        </div>
+        <div class="qr-card">
+          <img class="qr-img" src="images/qr-gcash.jpg" alt="GCash donation QR code" loading="lazy" decoding="async">
+          <div class="qr-name">Ma. Dolor D. Matulac</div>
+          <div class="qr-label">GCash</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING RSVP & MOVING MONOGRAM (Attached to bottom of burgundy section) -->
+<div class="closing-message">
+  <div class="closing-monogram">
+    <img src="images/mono-burgundy.png" alt="NJ &amp; MD monogram">
+  </div>
+  <div class="closing-rsvp">RSVP</div>
+  <p>We would be delighted if you could celebrate with us.</p>
+</div>
+
+<footer class="site-footer">
+  <span id="groom-name-3">NJ</span> &amp; <span id="bride-name-3">MD</span> &middot; <span id="footer-wedding-date">Wedding Date</span> &middot; Made with love
+</footer>
+
+
+<!-- ================================================================
+     JAVASCRIPT — live countdown timer
+     ================================================================ -->
+<script>
+  /* ============================================================
+     EDIT EVERYTHING HERE. This is the ONLY place you need to
+     type names, dates, venues, and links. The rest of the page
+     fills itself in automatically when it loads.
+     ============================================================ */
+  const CONFIG = {
+
+    groom: {
+      firstName:  "NJ",
+      heroName:   "Norly John",
+      fullName:   "Norly John M. Besonia",
+      surname:    "Besonia",
+      father:     "Norlito T. Besonia",
+      mother:     "Madelyn M. Besonia"
+    },
+    bride: {
+      firstName:  "MD",
+      heroName:   "Ma. Dolor",
+      fullName:   "Ma. Dolor D. Matulac",
+      surname:    "Matulac",
+      father:     "Rey A. Matulac",
+      mother:     "Annabelle D. Matulac"
+    },
+
+    // Wedding Date: Wednesday, November 18, 2026 — Ceremony at 9:00 AM
+    weddingDate: new Date("2026-11-18T09:00:00"),
+
+    venues: {
+      ceremony:   { name: "Parish of St. John the Baptist (Catholic Church)", location: "Poblacion, Banate, Iloilo, Philippines, 5010", mapUrl: "https://maps.app.goo.gl/x5M5RArCHQyyi9dU7" },
+      reception:  { name: "Tito Pap's Place", location: "Banate, Iloilo", mapUrl: "https://maps.app.goo.gl/9Guy1AZqyGrQYqyc9" }
+    },
+
+    // Leave mapUrl as "" to keep the reminder popup; paste a Google Maps link to make the button work.
+
+    // ============================================================
+    // OUR SONG — plays automatically (where the browser allows it)
+    // and via the play buttons on the page and in the corner.
+    //
+    // TO CHANGE THE SONG FILE: download your video/audio and put it
+    // in a "media" folder next to this index.html, then just change
+    // the mediaSrc line below to that filename. That's the only line
+    // you need to touch — e.g. mediaSrc: "media/our-song.mp4"
+    // ============================================================
+    song: {
+      title:  "I Know, I Love You",
+      artist: "Chelsey Johnson",
+      mediaSrc: "oursong.mp4",
+      youtubeUrl: ""
+    },
+
+    // The 3 dates under the Our Story icons (met / engaged / wedding day, etc.)
+    loveStory: {
+      date1: "08.12.2016",
+      date2: "09.09.2026",
+      date3: "11.18.2026"
+    },
+
+    hashtags: ["DolorablyInLoveWithNorly"],
+    longHashtag: "DolorablyInLoveWithNorly",
+
+    // Principal Sponsors — one string per line, any title (Hon./Atty./Dr./Mr./Mrs.).
+    // Add or remove lines freely; they auto-split into two even columns.
+    principalSponsors: [
+      "Mr. Antonio A Cañonero & Mrs. Joy B. Matulac",
+      "Mr. Antonio P. Montaño & Mrs. Leila E. Ching",
+      "Mr. Nestor A. Apuhin & Mrs. Arleen L. Matulac",
+      "Mr. Romulo D. Sobrado & Mrs. Vilma J. Arabit",
+      "Mr. Francis U. Batulio & Mrs. Lilibeth B. Espinosa",
+      "Mr. Jay F. Balitor & Mrs. Arlene M. Reyes",
+      "Mr. Ericson L. Mendoza & Mrs. Eva D. Mallorca",
+    ],
+
+    secondarySponsors: {
+      candle: ["Renniel M. Bantillo & Briggete Kay L. Matulac"],
+      veil:   ["Myron D. Matulac & Mary Cris M. Veles"],
+      cord:   ["Ryann Paul M. Besonia & Marveb L. Besonia"]
+    },
+
+    // Entourage roles — add/remove names freely, each becomes its own line.
+    roles: {
+      bestMan:      ["Martin Rey D. Matulac"],
+      maidOfHonor:  ["Marie Jhune D. Matulac"],
+      groomsmen:    ["Martin Rey D. Matulac"],
+      bridesmaids:  ["Jelian D. Hondante"],
+      flowerGirls:  ["Myra Alliyah V. Matulac", "Everly Belle L. Besonia", "Mary Mae M. Balino"],
+      bearers:      ["Lorenz M. Suncio (Ring)", "Ephraim J. Bacerra (Bible)", "John Paul M. Suncio (Coin)"]
+    }
+  };
+
+  /* ============================================================
+     RENDER — reads CONFIG above and fills in the page.
+     You shouldn't need to edit anything below this line.
+     ============================================================ */
+
+  // Couple/sponsor names are written as "Name & Name". On a narrow mobile
+  // card a line can break right after the "&", leaving it stranded and
+  // the second name dangling alone on its own line. Gluing the "&" to the
+  // very next word with a non-breaking space means if a wrap is needed,
+  // it happens between the names — never right after the "&" itself.
+  function glueAmpersand(str){
+    if (typeof str !== 'string') return str;
+    return str.replace(/&\s+/g, '&\u00A0');
+  }
+
+  function setText(id, value){
+    const el = document.getElementById(id);
+    if (el) el.textContent = glueAmpersand(value);
+  }
+
+  function fillList(id, items){
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = items.map(name => `<li>${glueAmpersand(name)}</li>`).join("");
+  }
+
+  function renderSponsorEntry(entry){
+    if (typeof entry !== 'string') return `<li>${entry}</li>`;
+    const parts = entry.split(/\s*&\s*/).map(s => s.trim()).filter(Boolean);
+    if (parts.length < 2) return `<li>${glueAmpersand(entry)}</li>`;
+    return `<li class="sponsor-couple">${parts.map(p => `<span class="sponsor-person">${glueAmpersand(p)}</span>`).join('')}</li>`;
+  }
+
+  function fillSponsorList(id, items){
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.innerHTML = items.map(renderSponsorEntry).join('');
+  }
+
+  // splits a flat array into two even columns for the sponsor grids
+  function fillSponsorColumns(colId1, colId2, items){
+    const half = Math.ceil(items.length / 2);
+    fillSponsorList(colId1, items.slice(0, half));
+    fillSponsorList(colId2, items.slice(half));
+  }
+
+  function wireVenue(prefix, venue){
+    setText(`venue-${prefix}-name`, venue.name);
+    setText(`venue-${prefix}-location`, venue.location);
+    const btn = document.getElementById(`venue-${prefix}-map-btn`);
+    if (!btn) return;
+    if (venue.mapUrl){
+      btn.addEventListener('click', () => window.open(venue.mapUrl, '_blank'));
+    } else {
+      btn.addEventListener('click', () => alert('Add a mapUrl for this venue in CONFIG to make this button work.'));
+    }
+  }
+
+  function renderPage(){
+    // Hero setup names ("Norly John" & "Ma. Dolor") vs initials ("NJ" & "MD")
+    setText('groom-name-1', CONFIG.groom.heroName || CONFIG.groom.firstName);
+    setText('bride-name-1', CONFIG.bride.heroName || CONFIG.bride.firstName);
+    ["groom-name-2","groom-name-3"].forEach(id => setText(id, CONFIG.groom.firstName));
+    ["bride-name-2","bride-name-3"].forEach(id => setText(id, CONFIG.bride.firstName));
+    document.title = `The Wedding Post — ${CONFIG.groom.firstName} & ${CONFIG.bride.firstName}`;
+
+    // Entourage
+    setText('groom-surname', CONFIG.groom.surname);
+    setText('bride-surname', CONFIG.bride.surname);
+    setText('groom-full-name', CONFIG.groom.fullName);
+    setText('bride-full-name', CONFIG.bride.fullName);
+    setText('groom-father-name', CONFIG.groom.father);
+    setText('groom-mother-name', CONFIG.groom.mother);
+    setText('bride-father-name', CONFIG.bride.father);
+    setText('bride-mother-name', CONFIG.bride.mother);
+
+    // Sponsors (Secondary Sponsors also use fillSponsorList so 2nd name stacks cleanly below 1st name)
+    fillSponsorColumns('principal-sponsors-col1', 'principal-sponsors-col2', CONFIG.principalSponsors);
+    fillSponsorList('sponsor-candle', CONFIG.secondarySponsors.candle);
+    fillSponsorList('sponsor-veil', CONFIG.secondarySponsors.veil);
+    fillSponsorList('sponsor-cord', CONFIG.secondarySponsors.cord);
+
+    // Roles
+    fillList('role-best-man', CONFIG.roles.bestMan);
+    fillList('role-maid-of-honor', CONFIG.roles.maidOfHonor);
+    fillList('role-groomsmen', CONFIG.roles.groomsmen);
+    fillList('role-bridesmaids', CONFIG.roles.bridesmaids);
+    fillList('role-flower-girls', CONFIG.roles.flowerGirls);
+    fillList('role-bearers', CONFIG.roles.bearers);
+
+    // Venues
+    wireVenue('ceremony', CONFIG.venues.ceremony);
+    wireVenue('reception', CONFIG.venues.reception);
+
+    // Our Story dates
+    setText('love-story-date-1', CONFIG.loveStory.date1);
+    setText('love-story-date-2', CONFIG.loveStory.date2);
+    setText('love-story-date-3', CONFIG.loveStory.date3);
+
+    // Our Song — title/artist text, video source, and both YouTube links
+    setText('song-name', `\u201C${CONFIG.song.title}\u201D`);
+    setText('song-artist', CONFIG.song.artist);
+    const songVideo = document.getElementById('site-song-video');
+    if (songVideo && CONFIG.song.mediaSrc){
+      songVideo.innerHTML = `<source src="${CONFIG.song.mediaSrc}" type="video/mp4">`;
+      songVideo.load();
+    }
+    const ytBtn = document.getElementById('song-yt-btn');
+    if (ytBtn) ytBtn.href = CONFIG.song.youtubeUrl;
+    const bgmLink = document.getElementById('bgm-yt-link');
+    if (bgmLink) bgmLink.href = CONFIG.song.youtubeUrl;
+
+    // Long Hashtag
+    setText('long-hashtag', '#' + CONFIG.longHashtag);
+  }
+
+  function formatDateLabels(date){
+    const dayNames = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+    const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+    const dow = dayNames[date.getDay()];
+    const month = monthNames[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+
+    setText('wedding-date-short', `${month} ${day}, ${year}`);
+    setText('wedding-date-long', `${dow}, ${month} ${day}, ${year}`);
+    setText('footer-wedding-date', `${month} ${day}, ${year}`);
+  }
+
+  function pad(n){ return n.toString().padStart(2,'0'); }
+
+  function updateCountdown(){
+    const now = new Date();
+    let diff = CONFIG.weddingDate - now;
+
+    if (diff <= 0){
+      document.getElementById('cd-days').textContent = "00";
+      document.getElementById('cd-hours').textContent = "00";
+      document.getElementById('cd-mins').textContent = "00";
+      document.getElementById('cd-secs').textContent = "00";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    diff -= days * (1000*60*60*24);
+    const hours = Math.floor(diff / (1000*60*60));
+    diff -= hours * (1000*60*60);
+    const mins = Math.floor(diff / (1000*60));
+    diff -= mins * (1000*60);
+    const secs = Math.floor(diff / 1000);
+
+    document.getElementById('cd-days').textContent = pad(days);
+    document.getElementById('cd-hours').textContent = pad(hours);
+    document.getElementById('cd-mins').textContent = pad(mins);
+    document.getElementById('cd-secs').textContent = pad(secs);
+  }
+
+  renderPage();
+  formatDateLabels(CONFIG.weddingDate);
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  /* ============================================================
+     PHOTO LOADING STATE — since the real photos (especially the
+     gallery) are often large, high-res files, don't let a photo
+     "paint in" partially/top-down while it downloads. Each photo
+     stays invisible behind a shimmering skeleton until it has
+     fully finished loading, then fades in all at once.
+     ============================================================ */
+  document.querySelectorAll('img.photo-frame').forEach(img => {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'photo-frame-wrap is-loading';
+    if (img.style.height === '100%') wrapper.style.height = '100%';
+    img.parentNode.insertBefore(wrapper, img);
+    wrapper.appendChild(img);
+
+    const reveal = () => {
+      img.classList.add('is-loaded');
+      wrapper.classList.remove('is-loading');
+    };
+
+    if (img.complete && img.naturalWidth > 0){
+      reveal();
+    } else {
+      img.addEventListener('load', reveal);
+      img.addEventListener('error', () => wrapper.classList.remove('is-loading'));
+    }
+  });
+
+  /* ============================================================
+     PHOTO FALLBACKS — if an images/*.jpg file hasn't been added
+     yet, swap the <img> for the same dashed placeholder-box style
+     used elsewhere in this template, instead of a broken-image icon.
+     Once you drop a real photo into /images/ with the matching
+     filename, this never runs and your real photo shows instead.
+     ============================================================ */
+  document.querySelectorAll('img.photo-frame').forEach(img => {
+    const showFallback = () => {
+      if (img.dataset.fallbackApplied) return;
+      img.dataset.fallbackApplied = '1';
+      const box = document.createElement('div');
+      box.className = 'placeholder-box' + (img.classList.contains('rounded') ? ' rounded' : '');
+      box.style.position = 'absolute';
+      box.style.inset = '0';
+      box.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+        <span>Photo</span>
+        <span class="ph-sub">${img.alt || 'Add your photo here'}</span>`;
+      const wrapper = document.createElement('div');
+      wrapper.style.position = 'relative';
+      wrapper.style.width = '100%';
+      const cs = getComputedStyle(img);
+      wrapper.style.aspectRatio = cs.aspectRatio !== 'auto' ? cs.aspectRatio : '4/3';
+      if (img.style.height === '100%') wrapper.style.height = '100%';
+      img.replaceWith(wrapper);
+      wrapper.appendChild(box);
+    };
+
+    if (img.complete && img.naturalWidth === 0){
+      showFallback();
+    } else {
+      img.addEventListener('error', showFallback);
+    }
+  });
+
+  /* ============================================================
+     PAGE DOTS — small right-edge indicator for the mobile
+     page-by-page scroll view. Purely cosmetic/navigational;
+     has no effect on desktop (hidden above 820px).
+     ============================================================ */
+  (function initPageDots(){
+    const pages = [
+      { el: document.querySelector('.hero'), dark: false },
+      { el: document.querySelector('.dark-section'), dark: true },
+      { el: document.querySelector('.timeline-section'), dark: false },
+      { el: document.querySelector('.entourage-section'), dark: true },
+      { el: document.querySelector('.gallery-section'), dark: false },
+      { el: document.querySelector('.dresscode-section'), dark: true }
+    ].filter(p => p.el);
+
+    const dotsContainer = document.getElementById('page-dots');
+    if (!dotsContainer || pages.length === 0) return;
+
+    pages.forEach((p) => {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (p.dark ? ' on-dark-page' : '');
+      dot.addEventListener('click', () => p.el.scrollIntoView({ behavior: 'smooth' }));
+      dotsContainer.appendChild(dot);
+      p.dotEl = dot;
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          const match = pages.find(p => p.el === entry.target);
+          if (match){
+            pages.forEach(p => p.dotEl.classList.remove('active'));
+            match.dotEl.classList.add('active');
+          }
+        }
+      });
+    }, { threshold: 0.5 });
+
+    pages.forEach(p => observer.observe(p.el));
+  })();
+
+  /* ============================================================
+     OUR SONG — one shared <video id="site-song-video"> element
+     (declared inside the "Our Story" section) provides the audio.
+     Both the inline play button and the floating corner button
+     control this same element, so there's only ever one thing
+     playing. Because the element is never removed from the page,
+     it keeps playing as the guest scrolls anywhere on the site.
+
+     Autoplay: most browsers block autoplay WITH sound until the
+     visitor has interacted with the page, so we first try to play
+     with sound; if the browser refuses, we fall back to a silent
+     autoplay and simply wait for the first tap on either play
+     button to switch the sound on.
+     ============================================================ */
+  (function initOurSong(){
+    const video      = document.getElementById('site-song-video');
+    const inlineBtn  = document.getElementById('song-play-btn');
+    const floatBtn   = document.getElementById('bgm-toggle');
+    const floatPlayer= document.getElementById('bgm-player');
+    if (!video) return;
+
+    function setPlayingUI(isPlaying){
+      [inlineBtn, floatBtn].forEach(btn => {
+        if (!btn) return;
+        btn.classList.toggle('is-playing', isPlaying);
+        btn.setAttribute('aria-label', isPlaying ? 'Pause our song' : 'Play our song');
+      });
+      if (floatPlayer) floatPlayer.classList.toggle('is-active', isPlaying);
+    }
+
+    function playWithSound(){
+      video.muted = false;
+      const p = video.play();
+      if (p && p.catch) p.catch(() => attemptSilentAutoplay());
+    }
+
+    function attemptSilentAutoplay(){
+      video.muted = true;
+      const p = video.play();
+      if (p && p.catch) p.catch(() => { /* wait for a user tap */ });
+    }
+
+    function togglePlay(){
+      if (video.paused){
+        video.muted = false; // a real tap counts as user interaction — safe to unmute
+        video.play();
+      } else if (video.muted){
+        video.muted = false; // was auto-playing silently; this tap turns the sound on
+      } else {
+        video.pause();
+      }
+    }
+
+    video.addEventListener('play',  () => setPlayingUI(true));
+    video.addEventListener('pause', () => setPlayingUI(false));
+
+    if (inlineBtn) inlineBtn.addEventListener('click', togglePlay);
+    if (floatBtn)  floatBtn.addEventListener('click', togglePlay);
+
+    // Browsers block audio-with-sound autoplay until the visitor has
+    // interacted with the page at all — this is a fixed browser/OS
+    // policy, not something this site can override. Rather than making
+    // people hunt for the small play button, treat their very first
+    // interaction ANYWHERE on the page (a scroll, a tap, a key press) as
+    // that permission slip and turn the sound on right then.
+    function unmuteOnFirstInteraction(){
+      if (video.muted) video.muted = false;
+      if (video.paused) video.play();
+    }
+    ['touchstart', 'click', 'keydown', 'wheel'].forEach(evt =>
+      document.addEventListener(evt, unmuteOnFirstInteraction, { once: true, passive: true })
+    );
+
+    // Try to start the moment the song source is ready.
+    video.addEventListener('loadedmetadata', playWithSound, { once: true });
+    // Fallback in case loadedmetadata already fired before this ran.
+    if (video.readyState >= 1) playWithSound();
+  })();
+
+  /* ============================================================
+     SCROLL-REVEAL ENGINE
+     Tags a broad set of existing elements with `.reveal` (plus a
+     directional/scale variant where it reads better) and a small
+     staggered delay for anything that sits in a row/grid, then
+     fades + lifts each one into place the moment it scrolls into
+     view. Nothing is hard-coded into the markup above — this just
+     finds what's already there, so it stays in sync automatically
+     if sections are edited or reordered later.
+     ============================================================ */
+  (function initScrollReveal(){
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // groups of elements that should stagger together, in the
+    // order they should appear
+    const staggerGroups = [
+      '.love-story-row .love-story-item',
+      '.itinerary-row .itinerary-block',
+      '.venue-row .venue-card',
+      '.col-divider-grid .entourage-col',
+      '.roles-grid .role-card',
+      '.gallery-grid > div',
+      '.swatches .swatch',
+      '.info-cards .info-card',
+      '.qr-grid .qr-card'
+    ];
+
+    const tagged = new Set();
+
+    staggerGroups.forEach(sel => {
+      document.querySelectorAll(sel).forEach((el, i) => {
+        el.classList.add('reveal');
+        el.style.setProperty('--reveal-delay', Math.min(i * 0.09, 0.45) + 's');
+        tagged.add(el);
+      });
+    });
+
+    // headers, dividers and standalone photos/blocks get a plain
+    // fade+lift the first time they individually enter view
+    const singles = document.querySelectorAll([
+      '.section-header', '.divider-rule', '.eyebrow',
+      '.invite-line', '.hero-portrait .photo-frame', '.hero-right > *',
+      '.countdown', '.hero-couple-line',
+      '.song-block', '.dresscode-title', '.vibe-quote',
+      '.attire-block', '.donation-block', '.entourage-sub',
+      '.venue-card .photo-frame'
+    ].join(','));
+
+    singles.forEach(el => {
+      if (tagged.has(el) || el.closest('.reveal')) return;
+      el.classList.add('reveal');
+      tagged.add(el);
+    });
+
+    if (reduceMotion){
+      document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+      return;
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  })();
+
+  /* ============================================================
+     COUNTDOWN TICK — a soft pop on whichever unit just changed,
+     so the countdown feels alive rather than a static readout.
+     ============================================================ */
+  (function initCountdownTick(){
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      let last = el.textContent;
+      new MutationObserver(() => {
+        if (el.textContent !== last){
+          last = el.textContent;
+          el.classList.remove('tick');
+          void el.offsetWidth; // restart animation
+          el.classList.add('tick');
+        }
+      }).observe(el, { childList: true });
+    });
+  })();
+
+  /* ============================================================
+     IDLE SCROLL HELPER — if the visitor stays on the first page
+     without scrolling down for 5 seconds, gently fade in a subtle
+     burgundy & gold "Scroll Down" pill. Hides immediately once
+     they scroll down or tap it.
+     ============================================================ */
+  (function initScrollHint(){
+    const hint = document.getElementById('scroll-hint');
+    const nextSection = document.getElementById('our-story');
+    if (!hint) return;
+
+    let idleTimer = null;
+
+    function isAtFirstPage(){
+      return window.scrollY < 80;
+    }
+
+    function hideHint(){
+      hint.classList.remove('is-visible');
+      if (idleTimer){
+        clearTimeout(idleTimer);
+        idleTimer = null;
+      }
+    }
+
+    function scheduleHint(){
+      hideHint();
+      if (isAtFirstPage()){
+        idleTimer = setTimeout(() => {
+          if (isAtFirstPage()){
+            hint.classList.add('is-visible');
+          }
+        }, 5000);
+      }
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!isAtFirstPage()){
+        hideHint();
+      } else if (!hint.classList.contains('is-visible') && !idleTimer){
+        scheduleHint();
+      }
+    }, { passive: true });
+
+    hint.addEventListener('click', () => {
+      hideHint();
+      if (nextSection){
+        nextSection.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        window.scrollBy({ top: window.innerHeight * 0.85, behavior: 'smooth' });
+      }
+    });
+
+    scheduleHint();
+  })();
+</script>
+
+</body>
+</html>
