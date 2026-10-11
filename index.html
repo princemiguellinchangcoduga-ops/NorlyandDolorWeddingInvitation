@@ -1841,7 +1841,7 @@
         <div class="song-video-wrap">
           <!-- EASY SWAP: change CONFIG.song.mediaSrc near the bottom of this file
                to point at your own downloaded audio/video file (e.g. "media/our-song.mp4"). -->
-          <video id="site-song-video" class="local-song-video" autoplay muted playsinline webkit-playsinline loop preload="auto"></video>
+          <video id="site-song-video" class="local-song-video" autoplay muted playsinline loop preload="auto"></video>
           <button class="song-play-btn" id="song-play-btn" type="button" aria-label="Play our song">
             <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
@@ -2377,7 +2377,6 @@
     setText('song-artist', CONFIG.song.artist);
     const songVideo = document.getElementById('site-song-video');
     if (songVideo && CONFIG.song.mediaSrc){
-      songVideo.src = CONFIG.song.mediaSrc;
       songVideo.innerHTML = `<source src="${CONFIG.song.mediaSrc}" type="video/mp4">`;
       songVideo.load();
     }
@@ -2561,9 +2560,6 @@
     const floatPlayer= document.getElementById('bgm-player');
     if (!video) return;
 
-    video.setAttribute('playsinline', '');
-    video.setAttribute('webkit-playsinline', '');
-
     function setPlayingUI(isPlaying){
       [inlineBtn, floatBtn].forEach(btn => {
         if (!btn) return;
@@ -2588,8 +2584,7 @@
     function togglePlay(){
       if (video.paused){
         video.muted = false; // a real tap counts as user interaction — safe to unmute
-        const p = video.play();
-        if (p && p.catch) p.catch(() => attemptSilentAutoplay());
+        video.play();
       } else if (video.muted){
         video.muted = false; // was auto-playing silently; this tap turns the sound on
       } else {
@@ -2609,29 +2604,12 @@
     // people hunt for the small play button, treat their very first
     // interaction ANYWHERE on the page (a scroll, a tap, a key press) as
     // that permission slip and turn the sound on right then.
-    const interactionEvents = ['touchstart', 'touchend', 'click', 'keydown', 'wheel'];
-    function removeInteractionListeners(){
-      interactionEvents.forEach(evt =>
-        document.removeEventListener(evt, unmuteOnFirstInteraction, { passive: true })
-      );
-    }
     function unmuteOnFirstInteraction(){
-      video.muted = false;
-      const p = video.play();
-      if (p && p.then){
-        p.then(() => {
-          if (!video.paused && !video.muted) removeInteractionListeners();
-        }).catch(() => {
-          // If this gesture wasn't allowed to unmute (e.g. passive scroll/wheel on mobile),
-          // keep silent video playing and wait for the next tap/touchend.
-          attemptSilentAutoplay();
-        });
-      } else if (!video.paused && !video.muted){
-        removeInteractionListeners();
-      }
+      if (video.muted) video.muted = false;
+      if (video.paused) video.play();
     }
-    interactionEvents.forEach(evt =>
-      document.addEventListener(evt, unmuteOnFirstInteraction, { passive: true })
+    ['touchstart', 'click', 'keydown', 'wheel'].forEach(evt =>
+      document.addEventListener(evt, unmuteOnFirstInteraction, { once: true, passive: true })
     );
 
     // Try to start the moment the song source is ready.
