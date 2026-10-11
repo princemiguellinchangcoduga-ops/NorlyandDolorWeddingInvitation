@@ -1841,7 +1841,7 @@
         <div class="song-video-wrap">
           <!-- EASY SWAP: change CONFIG.song.mediaSrc near the bottom of this file
                to point at your own downloaded audio/video file (e.g. "media/our-song.mp4"). -->
-          <video id="site-song-video" class="local-song-video" autoplay muted playsinline loop preload="auto"></video>
+          <video id="site-song-video" class="local-song-video" src="oursong.mp4" autoplay muted playsinline webkit-playsinline loop preload="auto"></video>
           <button class="song-play-btn" id="song-play-btn" type="button" aria-label="Play our song">
             <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4v16H6zM14 4h4v16h-4z"/></svg>
@@ -2377,8 +2377,10 @@
     setText('song-artist', CONFIG.song.artist);
     const songVideo = document.getElementById('site-song-video');
     if (songVideo && CONFIG.song.mediaSrc){
-      songVideo.innerHTML = `<source src="${CONFIG.song.mediaSrc}" type="video/mp4">`;
-      songVideo.load();
+      if (songVideo.getAttribute('src') !== CONFIG.song.mediaSrc){
+        songVideo.src = CONFIG.song.mediaSrc;
+        songVideo.load();
+      }
     }
     const ytBtn = document.getElementById('song-yt-btn');
     if (ytBtn) ytBtn.href = CONFIG.song.youtubeUrl;
@@ -2560,6 +2562,12 @@
     const floatPlayer= document.getElementById('bgm-player');
     if (!video) return;
 
+    video.defaultMuted = true;
+    video.muted = true;
+    video.playsInline = true;
+
+    let userPaused = false;
+
     function setPlayingUI(isPlaying){
       [inlineBtn, floatBtn].forEach(btn => {
         if (!btn) return;
@@ -2569,25 +2577,33 @@
       if (floatPlayer) floatPlayer.classList.toggle('is-active', isPlaying);
     }
 
-    function playWithSound(){
-      video.muted = false;
-      const p = video.play();
-      if (p && p.catch) p.catch(() => attemptSilentAutoplay());
-    }
-
     function attemptSilentAutoplay(){
       video.muted = true;
       const p = video.play();
       if (p && p.catch) p.catch(() => { /* wait for a user tap */ });
     }
 
-    function togglePlay(){
+    function playWithSound(){
+      video.muted = false;
+      const p = video.play();
+      if (p && p.catch){
+        p.catch(() => attemptSilentAutoplay());
+      }
+    }
+
+    function togglePlay(e){
+      if (e) e.stopPropagation();
       if (video.paused){
-        video.muted = false; // a real tap counts as user interaction — safe to unmute
-        video.play();
+        userPaused = false;
+        video.muted = false;
+        const p = video.play();
+        if (p && p.catch) p.catch(() => attemptSilentAutoplay());
       } else if (video.muted){
-        video.muted = false; // was auto-playing silently; this tap turns the sound on
+        video.muted = false;
+        const p = video.play();
+        if (p && p.catch) p.catch(() => {});
       } else {
+        userPaused = true;
         video.pause();
       }
     }
@@ -2597,24 +2613,50 @@
 
     if (inlineBtn) inlineBtn.addEventListener('click', togglePlay);
     if (floatBtn)  floatBtn.addEventListener('click', togglePlay);
+    video.addEventListener('click', togglePlay);
 
-    // Browsers block audio-with-sound autoplay until the visitor has
-    // interacted with the page at all — this is a fixed browser/OS
-    // policy, not something this site can override. Rather than making
-    // people hunt for the small play button, treat their very first
-    // interaction ANYWHERE on the page (a scroll, a tap, a key press) as
-    // that permission slip and turn the sound on right then.
-    function unmuteOnFirstInteraction(){
-      if (video.muted) video.muted = false;
-      if (video.paused) video.play();
+    // On mobile browsers (especially iOS Safari), unmuting during a scroll
+    // gesture is rejected and pauses the video. Try to unmute on tap/click,
+    // and if the browser rejects it, immediately keep playing muted so the
+    // video never stops on mobile.
+    const interactionEvents = ['click', 'touchend', 'keydown'];
+    function removeInteractionListeners(){
+      interactionEvents.forEach(evt =>
+        document.removeEventListener(evt, unmuteOnFirstInteraction, true)
+      );
     }
-    ['touchstart', 'click', 'keydown', 'wheel'].forEach(evt =>
-      document.addEventListener(evt, unmuteOnFirstInteraction, { once: true, passive: true })
+
+    function unmuteOnFirstInteraction(){
+      if (userPaused) {
+        removeInteractionListeners();
+        return;
+      }
+      video.muted = false;
+      const p = video.play();
+      if (p && p.then){
+        p.then(() => {
+          if (!video.paused && !video.muted) {
+            removeInteractionListeners();
+          }
+        }).catch(() => {
+          // Browser didn't count this gesture as audio activation (e.g. scroll swipe);
+          // keep the video playing muted and wait for the next tap.
+          attemptSilentAutoplay();
+        });
+      } else if (!video.paused && !video.muted){
+        removeInteractionListeners();
+      }
+    }
+
+    interactionEvents.forEach(evt =>
+      document.addEventListener(evt, unmuteOnFirstInteraction, { capture: true, passive: true })
     );
 
-    // Try to start the moment the song source is ready.
+    // Start playing as soon as metadata/canplay is ready.
     video.addEventListener('loadedmetadata', playWithSound, { once: true });
-    // Fallback in case loadedmetadata already fired before this ran.
+    video.addEventListener('canplay', () => {
+      if (video.paused && !userPaused) attemptSilentAutoplay();
+    }, { once: true });
     if (video.readyState >= 1) playWithSound();
   })();
 
